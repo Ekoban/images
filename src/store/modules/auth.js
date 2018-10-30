@@ -9,9 +9,16 @@ const getters = {
 };
 
 const mutations = {
-
+    setToken: (state, tokenTransferred) => {
+        state.token = tokenTransferred; // on met à jour une valeur simple avec le deuxieme argument
+    }
 };
 
 const actions = {
+    logout: ({ commit }) => {
+        commit('setToken', null);
+    };
 
 };
+
+
