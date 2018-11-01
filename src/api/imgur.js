@@ -1,16 +1,40 @@
 import qs from 'qs';
+import axios from 'axios';
 
+//b6bc4f2de69f7d8
 const CLIENT_ID = 'b6bc4f2de69f7d8';
 const ROOT_URL = 'https://api.imgur.com';
 
 export default {
-    login() {
-        const querystring = {
-            client_id: CLIENT_ID,
-            response_type: 'token',
-        };  // pour utiliser la bibliothèque QS
-        window.location = `${ROOT_URL}/oath2/authorize?${qs.stringify(querystring)}`;
-        console.log("Envoyé !")
-        //fait naviguer le browser vers cette url
-    }
+  login() {
+    const querystring = {
+      client_id: CLIENT_ID,
+      response_type: 'token'
+    };
+
+    window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(
+      querystring
+    )}`;
+  },
+  fetchImages(token) {
+    return axios.get(`${ROOT_URL}/3/account/me/images`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  },
+  uploadImages(images, token) {
+    const promises = Array.from(images).map(image => {
+      const formData = new FormData();
+      formData.append('image', image);
+
+      return axios.post(`${ROOT_URL}/3/image`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    });
+
+    return Promise.all(promises);
+  }
 };

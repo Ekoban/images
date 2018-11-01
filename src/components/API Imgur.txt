@@ -1,5 +1,0 @@
-Client ID: 
-76c2ee577caa2a8
-
-API secret:
-2b79f26462ca88829c1ad21280809607296b4fb0

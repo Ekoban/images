@@ -5,7 +5,7 @@
         </a>
 
         <div class="right menu">
-            <a href="/" class="ui item" @click="login">
+            <a href="#" class="ui item" @click="login">
                 Login    
             </a>
         </div>
