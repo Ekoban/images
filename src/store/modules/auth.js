@@ -6,7 +6,8 @@ const state = {
 };
 
 const getters = {
-    isLoggedIn: state => !!state.token
+    isLoggedIn: state => !!state.token,
+    whatsToken: state => state.token
 };
 
 
@@ -14,9 +15,17 @@ const actions = {
     login: () => {
         api.login();
     },
+
+    finalizeLogin: ({ commit }, hash) => {
+        const query = qs.parse(hash.replace('#', ''));
+
+        commit('setToken', query.access_token);
+    },
+
     logout: ({ commit }) => {
         commit('setToken', null);
-    }
+    },
+
 };
 
 const mutations = {

@@ -3,9 +3,10 @@
         <a href="/" class="active item">
         Image Storage
         </a>
-
+        {{ isLoggedIn }}
+        {{ whatsToken }}
         <div class="right menu">
-            <a href="#" class="ui item" @click="login">
+            <a href="#!" class="ui item" @click="login">
                 Login    
             </a>
         </div>
@@ -14,10 +15,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'; // une fonction qui connecte les actions aux components
+import { mapActions, mapGetters } from 'vuex'; 
+// une fonction qui connecte les actions et getters aux components
 
 export default {
   name: 'AppHeader',
+  computed: mapGetters(['isLoggedIn', 'whatsToken']),
   methods: mapActions(['login']) // actions Vuex - la notation ... est utilisée au cas où on veuille ajouter d'autres méthodes
 };
 </script>
