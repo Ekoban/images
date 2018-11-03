@@ -1,14 +1,14 @@
 <template>
     <div class="ui secondary pointing menu">
-        <a href="/" class="active item">
+        <router-link to="/" class="active item">
         Image Storage
-        </a>
-        
+        </router-link> 
+        <!-- router link à la place de anchor pour éviter le full page reload -->
         <div class="right menu">
             <div v-if="isLoggedIn" class="horizontal">
-                <a class="item" href="">Galleries</a>
-                <a class="item" href="">Upload</a>
-                <a class="item" href="#" @click="logout">Logout</a>
+                <router-link to="/" class="item" >Galleries</router-link>
+                <router-link to="/upload" class="item" >Upload</router-link>
+                <a class="item" @click="logout">Logout</a>
             </div>
             
             <a v-else href="#!" class="ui item" @click="login">
@@ -26,7 +26,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'AppHeader',
   computed: mapGetters(['isLoggedIn', 'whatsToken']),
-  methods: mapActions(['login', 'logout']) 
+  methods: mapActions(['login', 'logout'])
   // getters et actions Vuex - 
   // la notation ...mapGetters est utilisée au cas où on veuille ajouter d'autres méthodes
 };
