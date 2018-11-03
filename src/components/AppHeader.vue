@@ -3,10 +3,15 @@
         <a href="/" class="active item">
         Image Storage
         </a>
-        {{ isLoggedIn }}
-        {{ whatsToken }}
+        
         <div class="right menu">
-            <a href="#!" class="ui item" @click="login">
+            <div v-if="isLoggedIn" class="horizontal">
+                <a class="item" href="">Galleries</a>
+                <a class="item" href="">Upload</a>
+                <a class="item" href="#" @click="logout">Logout</a>
+            </div>
+            
+            <a v-else href="#!" class="ui item" @click="login">
                 Login    
             </a>
         </div>
@@ -21,9 +26,16 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'AppHeader',
   computed: mapGetters(['isLoggedIn', 'whatsToken']),
-  methods: mapActions(['login']) // actions Vuex - la notation ... est utilisée au cas où on veuille ajouter d'autres méthodes
+  methods: mapActions(['login', 'logout']) 
+  // getters et actions Vuex - 
+  // la notation ...mapGetters est utilisée au cas où on veuille ajouter d'autres méthodes
 };
 </script>
 
 <style scoped>
+.horizontal {
+    display: flex;
+    flex-direction: row;
+ }
 </style>
+
