@@ -19,7 +19,7 @@ const actions = {
 
     finalizeLogin: ({ commit }, hash) => {
         const query = qs.parse(hash.replace('#', ''));
-
+//commit permet d'appeler une mutation
         commit('setToken', query.access_token);
         window.localStorage.setItem('imgur_token', query.access_token);
         router.push('/')

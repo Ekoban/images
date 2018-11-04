@@ -16,5 +16,13 @@ export default {
       querystring
     )}`;
   },
+
+  fetchImages(token) {
+      return axios.get(`${ROOT_URL}/3/account/me/images`, {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }   //second argument d'une req Axios
+      })
+  },
   
 };
