@@ -15,7 +15,6 @@
                 Login    
             </a>
         </div>
-        
     </div>
 </template>
 
