@@ -1,6 +1,6 @@
 import api from '../../api/imgur';
 // import qs from 'qs';
-// import { router } from '../../main'; // on peut donc utiliser le routeur sans forcer de reload complet de la page
+import { router } from '../../main'; // on peut donc utiliser le routeur sans forcer de reload complet de la page
 
 const state = {
     images: []
@@ -27,6 +27,18 @@ const actions = {
 //commit permet d'appeler une mutation dans une action
 //rootState est une référence à tout le state dans notre store
 //nous permet donc d'accéder à la data des autres modules!
+
+    async uploadImages({ rootState }, images) {
+        //Get the access token
+        const { token } = rootState.auth;
+        
+        //Call imgur API and upload list of images
+        await api.uploadImages(images, token);
+
+        //Redirect our user to ImageList component
+        router.push('/')
+    }
+
 };
 
 
